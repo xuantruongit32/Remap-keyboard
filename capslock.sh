@@ -1,14 +1,19 @@
-# Create ~/.xmodmap and add :
-# remove Lock= Caps_Lock
-#keysym Caps_Lock = Escape
-# chmod +x to run this script
-# add it to .zshrc
 #!/bin/bash
+# Check if xmodmap is installed
+if ! command -v xmodmap &> /dev/null
+then
+    sudo pacman -Syu xorg-xmodmap --noconfirm
+fi
+
+# Check if xcape is installed
+if ! command -v xcape &> /dev/null
+then
+    sudo pacman -Syu xcape --noconfirm
+fi
+setxkbmap -option ctrl:nocaps,shift:both_capslock
 xmodmap .xmodmap
 xmodmap -e "keycode 133 = Return"
-xmodmap -e "keycode 62 = BackSpace"
-xmodmap -e "keycode 134 = Up"
-xmodmap -e "keycode 135 = Left"
-xmodmap -e "keycode 108 = Right"
-xmodmap -e "keycode 105 = Down"
+xcape
+xset r rate 300 50
+clear
 exit 0
