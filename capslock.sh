@@ -15,5 +15,4 @@ xmodmap .xmodmap
 xmodmap -e "keycode 133 = Return"
 xcape
 xset r rate 300 50
-clear
 exit 0
